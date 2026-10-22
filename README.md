@@ -1,6 +1,6 @@
 # Resumen diario de emails → Telegram
 
-Cada día a las 10:00 (Madrid) revisa los emails recibidos desde las 10:00 del día anterior,
+Cada día a las 11:00 (Madrid) revisa los emails recibidos desde las 11:00 del día anterior,
 Claude decide cuáles son importantes y te manda un resumen por Telegram.
 
 ## Configuración

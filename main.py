@@ -16,6 +16,7 @@ import anthropic
 import requests
 
 TZ = ZoneInfo("Europe/Madrid")
+RUN_HOUR = 11  # hora de Madrid a la que se envía el resumen
 MODEL = "claude-haiku-5-5"
 BODY_CHARS = 1500
 MAX_EMAILS = 150
@@ -53,7 +54,7 @@ def telegram(text):
 
 def window(days_override):
     now = datetime.now(TZ)
-    end = now.replace(hour=10, minute=0, second=0, microsecond=0)
+    end = now.replace(hour=RUN_HOUR, minute=0, second=0, microsecond=0)
     if days_override:  # pruebas: ventana ampliada hasta ahora
         return now - timedelta(days=days_override), now
     return end - timedelta(days=1), end
@@ -135,8 +136,8 @@ def main():
     dry = "--dry-run" in sys.argv
     days = int(os.environ.get("DAYS", "0") or 0)
     manual = os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or dry
-    if not manual and datetime.now(TZ).hour != 10:
-        print("No son las 10:00 en Madrid; salgo (el otro cron se encargará).")
+    if not manual and datetime.now(TZ).hour != RUN_HOUR:
+        print(f"No son las {RUN_HOUR}:00 en Madrid; salgo (el otro cron se encargará).")
         return
 
     send = print if dry else telegram

@@ -3,10 +3,10 @@ name: Resumen diario de emails
 on:
   # Horario automatico desactivado: la automatizacion real corre como rutina en
   # la nube de Claude. Para usar este plan B, descomenta (UTC; main.py solo actua
-  # cuando en Madrid es la hora 10) y define los secretos en GitHub.
+  # cuando en Madrid es la hora 11) y define los secretos en GitHub.
   # schedule:
-  #   - cron: "7 8 * * *"
   #   - cron: "7 9 * * *"
+  #   - cron: "7 10 * * *"
   workflow_dispatch:
     inputs:
       days:
